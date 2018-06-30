@@ -1,0 +1,23 @@
+<html>
+
+<head>
+  <script src="./browserMqtt.js"></script>
+</head>
+
+<body>
+  <script>
+    console.log('hello 0 ');
+    var client = mqtt.connect("ws://localhost:3000");
+    console.log('hello 1');
+    client.subscribe("mqtt/demo");
+    console.log('hello 12');
+    client.on("message", function (topic, payload) {
+      alert([topic, payload].join(": "));
+      client.end();
+    });
+
+    client.publish("mqtt/demo", "hello world!");
+  </script>
+</body>
+
+</html>
